@@ -49,8 +49,28 @@ const drawCards = function(cardNumber, inverted) {
     console.log(cardNumber);
     console.log(inverted);
 
+    const cardListEl = document.getElementById("card-list");
+    cardListEl.innerHTML = "";
+
     const shuffledDeck = shuffleCards(cardsArray);
-    console.log(shuffledDeck);
+
+    for (i = 0; i < cardNumber; i++) {
+        const cardEl = document.createElement("li");
+
+        var cardText = shuffledDeck[i];
+
+        if (inverted) {
+            const invert = Math.random();
+            if (invert < .5) {
+                cardText += ", upright";
+            } else {
+                cardText += ", inverted";
+            }
+        }
+
+        cardEl.textContent = cardText;
+        cardListEl.appendChild(cardEl);
+    }
 }
 
 
